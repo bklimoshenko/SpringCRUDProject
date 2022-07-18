@@ -33,11 +33,11 @@ public class SpringCrudApplication {
 		return args -> studentRepository.saveAll(Arrays.asList(defaultStudent1, defaultStudent2));
 	}
 
-//	@Bean
-//	public ApplicationRunner initUsers(){
-//		final User defaultUser1 = new User(UUID.randomUUID().toString(), UUID.randomUUID().toString());
-//		final User defaultUser2 = new User(UUID.randomUUID().toString(), UUID.randomUUID().toString());
-//
-//		return args -> userRepository.saveAll(Arrays.asList(defaultUser1, defaultUser2));
-//	}
+	@Bean
+	public ApplicationRunner initUsers(){
+		final User defaultUser1 = new User("johnDoe", "abc123");
+		final User defaultUser2 = new User("janeDoe", "123abc");
+
+		return args -> userRepository.saveAll(Arrays.asList(defaultUser1, defaultUser2));
+	}
 }
