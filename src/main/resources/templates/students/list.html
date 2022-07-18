@@ -31,20 +31,20 @@
     <div class="container-sm">
         <table class="table table-bordered table-striped table-hover">
             <thead>
-                <th style="width:10%; text-align: center">ID Number</th>
-                <th style="width:30%;">First Name</th>
-                <th style="width:30%;">Last Name</th>
-                <th style="width:30%;">&nbsp</th>
+                <th style="width:35%; text-align: center">ID Number</th>
+                <th style="width:20%;">First Name</th>
+                <th style="width:20%;">Last Name</th>
+                <th style="width:25%;">&nbsp</th>
             </thead>
             <tbody>
                 <tr th:each="student: ${students}">
-                    <td>1</td>
-                    <td th:text="${student.firstName}">John</td>
-                    <td th:text="${student.lastName}">Doe</td>
+                    <td th:text="${student.id}">Sample ID</td>
+                    <td th:text="${student.firstName}">Sample</td>
+                    <td th:text="${student.lastName}">Text</td>
                     <td>
-                        <a class="btn btn-info" href="#" role="button">View</a>
-                        <a class="btn btn-warning" href="#" role="button">Edit</a>
-                        <a class="btn btn-danger" href="#" role="button">Delete</a>
+                        <a class="btn btn-info" th:href="'view?id=' + ${student.id}" role="button">View</a>
+                        <a class="btn btn-warning" th:href="'edit?id=' + ${student.id}" role="button">Edit</a>
+                        <a class="btn btn-danger" th:href="'delete?id=' + ${student.id}" role="button">Delete</a>
                     </td>
                 </tr>
             </tbody>
@@ -52,7 +52,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-                <a href="#" class="btn btn-primary">Add new student</a>
+                <a href="add" class="btn btn-primary">Add new student</a>
                 <div class="d-flex">
                     <nav aria-label="Page Destination Example">
                         <ul class="pagination">
