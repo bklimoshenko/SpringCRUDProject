@@ -37,20 +37,10 @@
                 <th style="width:30%;">&nbsp</th>
             </thead>
             <tbody>
-                <tr>
+                <tr th:each="student: ${students}">
                     <td>1</td>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>
-                        <a class="btn btn-info" href="#" role="button">View</a>
-                        <a class="btn btn-warning" href="#" role="button">Edit</a>
-                        <a class="btn btn-danger" href="#" role="button">Delete</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Jane</td>
-                    <td>Doe</td>
+                    <td th:text="${student.firstName}">John</td>
+                    <td th:text="${student.lastName}">Doe</td>
                     <td>
                         <a class="btn btn-info" href="#" role="button">View</a>
                         <a class="btn btn-warning" href="#" role="button">Edit</a>
@@ -66,8 +56,18 @@
                 <div class="d-flex">
                     <nav aria-label="Page Destination Example">
                         <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                            <li class="page-item disabled" th:if="${previousPageNumber == -1}">
+                                <a class="page-link" href="#">Previous</a>
+                            </li>
+                            <li class="page-item" th:if="${previousPageNumber != -1}">
+                                <a class="page-link" th:href="'?page=' + ${previousPageNumber}">Previous</a>
+                            </li>
+                            <li class="page-item disabled" th:if="${nextPageNumber == -1}">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                            <li class="page-item" th:if="${nextPageNumber != -1}">
+                                <a class="page-link" th:href="'?page=' + ${nextPageNumber}">Next</a>
+                            </li>
                         </ul>
                     </nav>
                 </div>
