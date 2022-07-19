@@ -6,8 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Optional;
+import java.util.UUID;
 
 @Controller
 public class StudentController {
@@ -23,7 +29,7 @@ public class StudentController {
 
     @GetMapping("/students")
     public String index(){
-        return("redirect:/list");
+        return("redirect:list");
     }
 
     @GetMapping("/students/list")
@@ -49,15 +55,37 @@ public class StudentController {
         return "students/add";
     }
     @GetMapping("/students/view")
-    public String view(){
+    public String view(final Model model, @RequestParam final UUID id) {
+
+        final Optional<Student> record = service.getStudent(id);
+
+        model.addAttribute("student", record.isPresent() ? record.get() : new Student());
+        model.addAttribute("id", id);
+
         return "students/view";
     }
     @GetMapping("/students/edit")
-    public String edit(){
+    public String edit(final Model model, @RequestParam final UUID id) {
+
+        final Optional<Student> record = service.getStudent(id);
+
+        model.addAttribute("student", record.isPresent() ? record.get() : new Student());
+        model.addAttribute("id", id);
+
         return "students/edit";
+    }
+
+    @PostMapping("/students/save")
+    public String save(final Model model, @ModelAttribute final Student student, final BindingResult errors) {
+
+        service.save(student);
+
+        return "redirect:list";
     }
     @GetMapping("/students/delete")
     public String delete(){
         return "students/delete";
     }
+
+
 }

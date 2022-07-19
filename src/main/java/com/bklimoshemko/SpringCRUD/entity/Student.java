@@ -15,7 +15,7 @@ import java.util.UUID;
 public class Student {
     @Id
     @GeneratedValue(generator = "UUID")
-    @Column(name = "s_id")
+    @Column(columnDefinition = "uuid", name = "s_id")
     private UUID id;
     @Column(name = "s_fist_name")
     private String firstName;

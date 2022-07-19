@@ -38,24 +38,30 @@
 
   <h2 class="navbar-brand">Edit Student</h2>
 
-  <div class="alert alert-danger" role="alert">
-    Student not found
+  <div th:if="${student.id == null}">
+    <div class="alert alert-danger" role="alert" th:text="'Student with ID [' + ${id} + '] was not found'">
+      Student not found
+    </div>
+    <a href="list" class="btn btn-outline-secondary">Go Back</a>
   </div>
 
-  <form action="#" method="post">
+  <form th:action="@{save}" method="post" th:object="${student}" th:if="${student.id != null}">
+
+    <input type="hidden" id="id" name="id" th:value="*{id}" />
+
     <div class="mb-3">
       <label for="firstName" class="form-label">First Name</label>
-      <input type="text" class="form-control" id="firstName"
-             placeholder="First Name of the Student" />
+      <input type="text" class="form-control" id="firstName" name="firstName" th:value="*{firstName}"
+             placeholder="First Name" />
     </div>
     <div class="mb-3">
       <label for="lastName" class="form-label">Last Name</label>
-      <input type="text" class="form-control" id="lastName"
-             placeholder="Last Name of the Student" />
+      <input type="text" class="form-control" id="lastName" name="lastName" th:value="*{lastName}"
+             placeholder="Last Name" />
     </div>
 
     <input type="submit" class="btn btn-success" value="Update" />
-    <a href="#" class="btn btn-outline-secondary">Cancel</a>
+    <a href="list" class="btn btn-outline-secondary">Cancel</a>
   </form>
 </div>
 </body>

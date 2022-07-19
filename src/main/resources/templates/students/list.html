@@ -42,9 +42,9 @@
                     <td th:text="${student.firstName}">Sample</td>
                     <td th:text="${student.lastName}">Text</td>
                     <td>
-                        <a class="btn btn-info" th:href="'view?id=' + ${student.id}" role="button">View</a>
-                        <a class="btn btn-warning" th:href="'edit?id=' + ${student.id}" role="button">Edit</a>
-                        <a class="btn btn-danger" th:href="'delete?id=' + ${student.id}" role="button">Delete</a>
+                        <a class="btn btn-info" th:href="'view?id=' + ${student.id}">View</a>
+                        <a class="btn btn-warning" th:href="'edit?id=' + ${student.id}">Edit</a>
+                        <a class="btn btn-danger" th:href="'delete?id=' + ${student.id}">Delete</a>
                     </td>
                 </tr>
             </tbody>
@@ -74,6 +74,5 @@
             </div>
         </nav>
     </div>
-<!--    <p th:text="${message}">welcome</p>-->
 </body>
 </html>
