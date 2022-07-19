@@ -51,7 +51,10 @@ public class StudentController {
     }
 
     @GetMapping("/students/add")
-    public String add(){
+    public String add(final Model model){
+
+        model.addAttribute("student", new Student());
+
         return "students/add";
     }
     @GetMapping("/students/view")
