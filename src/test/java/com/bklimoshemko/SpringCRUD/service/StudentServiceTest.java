@@ -34,9 +34,6 @@ public class StudentServiceTest {
         final Student student = new Student(UUID.randomUUID(), UUID.randomUUID().toString(), UUID.randomUUID().toString());
 
         final Optional<Student> expectedStudent = Optional.of(student);
-
-//        given(repository.findById(id).willReturn(expectedStudent));
-        /*https://youtu.be/PeSei1DvRss?list=PLFZica6Hmcri2RPIt1al5cVfpEhxmaNIv&t=2458 skip tests*/
     }
 
 }
