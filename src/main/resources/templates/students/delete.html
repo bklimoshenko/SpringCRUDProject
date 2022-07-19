@@ -38,22 +38,28 @@
 
   <h2 class="navbar-brand">Delete Student</h2>
 
-  <div class="alert alert-danger" role="alert">
-    Student not found
+  <div th:if="${student.id == null}">
+    <div class="alert alert-danger" role="alert" th:text="'Student with ID [' + ${id} + '] was not found'">
+      Student not found
+    </div>
+    <a href="list" class="btn btn-outline-secondary">Go Back</a>
   </div>
 
-  <form action="#" method="post">
+  <form th:action="@{delete}" method="post" th:object="${student}" th:if="${student.id != null}">
+
+    <input type="hidden" id="id" name="id" th:value="*{id}" />
+
     <div class="mb-3">
       <label for="firstName" class="form-label">First Name</label>
-      <input type="text" class="form-control" id="firstName" disabled="true" />
+      <input type="text" class="form-control" id="firstName" disabled="true" th:value="*{firstName}" />
     </div>
     <div class="mb-3">
       <label for="lastName" class="form-label">Last Name</label>
-      <input type="text" class="form-control" id="lastName" disabled="true" />
+      <input type="text" class="form-control" id="lastName" disabled="true" th:value="*{lastName}" />
     </div>
 
     <input type="submit" class="btn btn-danger" value="Delete" />
-    <a href="#" class="btn btn-outline-secondary">Cancel</a>
+    <a href="list" class="btn btn-outline-secondary">Cancel</a>
   </form>
 </div>
 </body>

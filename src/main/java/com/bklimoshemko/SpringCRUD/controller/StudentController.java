@@ -85,9 +85,21 @@ public class StudentController {
 
         return "redirect:list";
     }
+
     @GetMapping("/students/delete")
-    public String delete(){
+    public String delete(final Model model, @RequestParam final UUID id){
+        final Optional<Student> record = service.getStudent(id);
+
+        model.addAttribute("student", record.isPresent() ? record.get() : new Student());
+        model.addAttribute("id", id);
+
         return "students/delete";
+    }
+    @PostMapping("/students/delete")
+    public String deletion(final Model model, @RequestParam final UUID id){
+        service.delete(id);
+
+        return "redirect:list";
     }
 
 

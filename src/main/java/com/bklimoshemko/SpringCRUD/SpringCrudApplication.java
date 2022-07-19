@@ -9,11 +9,13 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 import java.util.Arrays;
 import java.util.UUID;
 
 @SpringBootApplication
+@EnableWebSecurity
 public class SpringCrudApplication {
 	@Autowired
 	private StudentRepository studentRepository;
@@ -31,13 +33,5 @@ public class SpringCrudApplication {
 		final Student defaultStudent2 = new Student(UUID.randomUUID(), "Jane", "Doe");
 
 		return args -> studentRepository.saveAll(Arrays.asList(defaultStudent1, defaultStudent2));
-	}
-
-	@Bean
-	public ApplicationRunner initUsers(){
-		final User defaultUser1 = new User("johnDoe", "abc123");
-		final User defaultUser2 = new User("janeDoe", "123abc");
-
-		return args -> userRepository.saveAll(Arrays.asList(defaultUser1, defaultUser2));
 	}
 }
