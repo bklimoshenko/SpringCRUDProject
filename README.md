@@ -1,4 +1,4 @@
-# SpringCRUDProject
+# Spring Student Database
 
 ## Description
 - This is a simple CRUD project made with Spring, JPA, and Thymeleaf.
